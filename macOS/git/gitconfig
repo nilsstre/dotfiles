@@ -1,0 +1,64 @@
+[user]
+  name = Nils Streijffert
+  email = nils.streijffert@gmail.com
+
+[alias]
+  a = add
+  s = status -s
+  c = commit
+  d = diff
+  p = pull --rebase
+  pr = pull-request
+  l = log --format=compact
+
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+
+  # List contributors with number of commits
+  contributors = shortlog --summary --numbered
+
+[apply]
+  # Detect whitespace errors when applying a patch
+  whitespace = fix
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
+
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = red
+
+[core]
+  # Treat spaces before tabs and all kinds of trailing whitespace as an error
+  # [default] trailing-space: looks for spaces at the end of a line
+  # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+  editor = nvim
+  excludesfile = ~/.gitignore
+
+[diff]
+  # Detect copies as well as renames
+  renames = copies
+
+[help]
+  autocorrect = 1
+
+[pretty]
+  compact = %C(red)%h %>(18,trunc)%C(yellow)%an%C(reset) %<(50,trunc)%s %C(green)(%cr)%C(reset)
+
+[push]
+  default = simple
+
+[filter "lfs"]
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+
+[commit]
+  verbose = true
