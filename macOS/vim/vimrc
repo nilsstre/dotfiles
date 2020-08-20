@@ -1,0 +1,26 @@
+set number
+
+set encoding=UTF-8
+
+syntax on
+colorscheme onedark
+
+"Don't make a sound or flash when doing something wrong
+set visualbell
+set t_vb=
+
+"Use case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
+
+"Enable the mouse in all modes
+set mouse=a
+
+set langmenu=en_US
+let $LANG = 'en_US'
+
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+set guioptions=
