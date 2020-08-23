@@ -4,11 +4,11 @@ packages=(
     tree
     wget 
     trash
-    nvm
     htop-osx
     tmux
     neovim
     thefuck
+    fzf
 )
 
 echo "Installing Homebrew packages..."
