@@ -2,6 +2,157 @@ set number
 
 set encoding=UTF-8
 
+" Export bash as shell for plugins
+let $SHELL = '/bin/bash'
+
+" Edit vimrc using :Vimconf
+command! Vimconf :edit ~/.vim/vimrc
+
+" Plugins {{{1
+" Using vim-plug: https://github.com/junegunn/vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-repeat'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'joshdick/onedark.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-surround'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'w0rp/ale'
+Plug 'mbbill/undotree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'rizzatti/dash.vim'
+
+call plug#end()
+
+" Plugin configuration
+" onedark.vim {{{2
+" Enable italics
+let g:onedark_terminal_italics=1
+
+" FZF {{{2
+" Invoke with CTRL-P
+map <silent> <c-p> :FZF<CR>
+
+" Search active buffers with Leader-B
+nmap <silent> <Leader>b :Buffers<CR>
+
+" Rainbow Parentheses {{{2
+" Activate for lisps
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
+
+" Lightline (+ Bufferline) {{{2
+" Always show tabline
+set showtabline=2
+
+" Show open buffers in tabline
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'tabline': {
+      \   'left': [['buffers']],
+      \   'right': []
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers',
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel',
+      \ },
+      \ }
+
+" Show only name of files, not paths
+let g:lightline#bufferline#filename_modifier = ':t'
+
+" Dash {{{2
+" Search word under cursor in Dash with Leader-D
+nnoremap <silent> <leader>d :Dash<CR>
+
+" coc.nvim {{{2
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" Don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" Keep signs column open
+set signcolumn=yes
+
+" Cycle completions using tab
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Confirm completion with <CR>
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Show hover documentation in floating window with Leader-H
+nnoremap <silent> <Leader>h :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Rename word under cursor with Leader-R
+nmap <leader>r <Plug>(coc-rename)
+
+" Format selected region with Leader-F
+vmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap space key to leader
+map <Space> <Leader>
+
+" Highlight search hits but clear highlight on escape
+set hlsearch
+nnoremap <silent> <esc> :noh<return><esc>
+
+" Use case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
+
+" Instead of failing command because of unsaved changes, raise a dialog to ask
+" for save
+set confirm
+
+" Allow switching buffers without saving
+set hidden
+
 syntax on
 colorscheme onedark
 
@@ -24,3 +175,19 @@ set softtabstop=4
 set expandtab
 
 set guioptions=
+
+" True colors for colorscheme
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" Highlighting unwanted spaces/tabs
+highlight TabHighlight ctermbg=236
+highlight ExtraWhitespace ctermbg=236 guibg=#2c323c
+match TabHighlight /\t/
+match ExtraWhitespace /\s\+$/
+
+" Mark 80th column
+set colorcolumn=80
+
+autocmd vimenter * NERDTree
