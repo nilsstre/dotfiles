@@ -6,14 +6,13 @@ SERVER_ADDRESS = os.environ['HOME_SERVER_ADDRESS']
 SERVER_PORT = os.environ['HOME_SERVER_PORT']
 SERVER_USER = os.environ['HOME_SERVER_USER']
 SERVER_KEY = os.environ['HOME_SERVER_KEY']
-HOME = os.environ['HOME']
 
 services = dict({'sonarr': 6089, 'radarr': 6079, 'jackett': 6099, 'deluge': 8112, 'tautulli': 8181, 'vnc': 5901})
 
 arguemnts = sys.argv[1:]
 
 if __name__ == "__main__":
-    command = 'ssh -i ' + HOME + '/.ssh/' + SERVER_KEY + ' -p ' + SERVER_PORT + ' ' + SERVER_USER + '@' + SERVER_ADDRESS
+    command = 'ssh -i ' + '~/.ssh/' + SERVER_KEY + ' -p ' + SERVER_PORT + ' ' + SERVER_USER + '@' + SERVER_ADDRESS
 
     for service in arguemnts:
         command += ' -L ' + str(services[service]) + ':localhost:' + str(services[service])
