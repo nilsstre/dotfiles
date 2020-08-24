@@ -57,15 +57,15 @@ bash ~/github/private/dotfiles/macOS/scripts/mac.sh
 bash ~/github/private/dotfiles/macOS/scripts/packages.sh
 
 # Setup Vim
-bash ~/github/private/dotfiles/macOS/scripts/vim.sh
+bash ~/github/private/dotfiles/vim/vim.sh
 
 # Setup Git
-bash ~/github/private/dotfiles/macOS/scripts/git.sh
-
-# Setup nvm
-bash ~/github/private/dotfiles/macOS/scripts/nvm.sh
+bash ~/github/private/dotfiles/git/setup.sh
 
 # Run fish script
-bash ~/github/private/dotfiles/macOS/scripts/fish.sh
+bash ~/github/private/dotfiles/fish/setup_mac.sh
+
+# Setup nvm
+fish ~/github/private/dotfiles/nvm/setup.sh
 
 echo "Done!"

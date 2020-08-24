@@ -54,6 +54,3 @@ alias vimconf='vim ~/.vim/vimrc'
 
 # iTerm2 shell integration
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
-
-# Load nvm functions
-load_nvm
