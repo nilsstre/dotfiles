@@ -25,6 +25,7 @@ apps=(
   slack
   google-photos-backup-and-sync
   visual-studio-code
+  zoomus
 )
 
 # Install apps to /Applications
