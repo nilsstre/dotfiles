@@ -6,7 +6,6 @@ apt upgrade
 
 yes | apt install fish
 
-echo (which fish) | tee -a /etc/shells
 chsh -s (which fish)
 curl -L http://get.oh-my.fish | fish
 
