@@ -190,4 +190,3 @@ match ExtraWhitespace /\s\+$/
 " Mark 80th column
 set colorcolumn=80
 
-autocmd vimenter * NERDTree
