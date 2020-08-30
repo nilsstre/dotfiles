@@ -4,7 +4,7 @@ apt-add-repository ppa:fish-shell/release-3
 apt update
 apt upgrade
 
-apt install fish
+yes | apt install fish
 
 echo (which fish) | tee -a /etc/shells
 chsh -s (which fish)
