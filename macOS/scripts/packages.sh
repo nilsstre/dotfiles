@@ -9,6 +9,8 @@ packages=(
     neovim
     thefuck
     fzf
+    jq
+    midnight-commander
 )
 
 echo "Installing Homebrew packages..."
@@ -26,6 +28,7 @@ apps=(
   google-photos-backup-and-sync
   visual-studio-code
   zoomus
+  google-chrome
 )
 
 # Install apps to /Applications
@@ -40,8 +43,7 @@ brew cask cleanup
 brew cleanup
 
 echo "Downloading OVPN-client"
-cd ~/Downloads
-curl -L -O https://files.ovpn.com/client/latest/OVPN.zip
-unzip OVPN.zip
-rm -rf OVPN.zip
-mv OVPN.app /Applications/
+OVPN=~/Downloads/OVPN.zip
+curl -L https://files.ovpn.com/client/latest/OVPN.zip -o $OVPN
+unzip $OVPN -d ~/Downloads/
+rm -rf $OVPN
