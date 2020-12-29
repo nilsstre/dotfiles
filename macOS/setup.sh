@@ -6,11 +6,8 @@ echo "Started MacOS setup script"
 
 email="nils.streijffert@gmail.com"
 
-# Ask for the administrator password upfront
-sudo -v
-
 echo "Installing xcode-stuff"
-xcode-select --install
+sudo xcode-select --install
 
 # Check for Homebrew,
 # Install if we don't have it
@@ -47,6 +44,7 @@ mkdir -p ~/github/private
 cd ~/github/private
 git clone git@github.com:nilsstre/dotfiles.git dotfiles
 
+sudo -v
 # Run mac setup script
 bash ~/github/private/dotfiles/macOS/scripts/mac.sh || echo "Error while running the mac.sh script"
 
