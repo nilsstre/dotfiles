@@ -5,7 +5,7 @@ import urllib.request
 
 SERVER_ADDRESS = os.environ['HOME_SERVER_ADDRESS']
 
-SERVER_SERVICES = dict({'sonarr': 6089, 'radarr': 6079, 'jackett': 6099, 'deluge': 8112, 'tautulli': 8181, 'vnc': 5901, 'ombi': 3579})
+SERVER_SERVICES = dict({'sonarr': 6089, 'radarr': 6079, 'jackett': 6099, 'deluge': 8112, 'tautulli': 8181, 'vnc': 5901, 'ombi': 3579, 'dozzle': 8282})
 
 CLOSE_COMMAND = 'close'
 
