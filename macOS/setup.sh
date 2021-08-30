@@ -39,27 +39,30 @@ echo "https://github.com/account/ssh \n"
 read -p "Press [Enter] key after this..."
 
 echo "Pulling dotfiles from Github"
-mkdir -p ~/github/private
-cd ~/github/private
-git clone git@github.com:nilsstre/dotfiles.git dotfiles
+githubDir=~/github/private
+mkdir -p $githubDir
+git clone git@github.com:nilsstre/dotfiles.git $githubDir/dotfiles
 
-sudo -v
+sudo -v # set sudo privileges
+
+dotfiles=$githubDir/dotfiles
+
 # Run mac setup script
-bash ~/github/private/dotfiles/macOS/scripts/mac.sh || echo "Error while running the mac.sh script"
+bash $dotfiles/macOS/scripts/mac.sh || echo "Error while running the mac.sh script"
 
 # Install applications and packages using Homebrew
-bash ~/github/private/dotfiles/macOS/scripts/packages.sh || echo "Error while running the packages.sh script"
+bash $dotfiles/macOS/scripts/packages.sh || echo "Error while running the packages.sh script"
 
 # Setup Vim
-bash ~/github/private/dotfiles/vim/setup.sh || echo "Error while running the vim setup script"
+bash $dotfiles/vim/setup.sh || echo "Error while running the vim setup script"
 
 # Setup Git
-bash ~/github/private/dotfiles/git/setup.sh || echo "Error while running the git setup script"
+bash $dotfiles/git/setup.sh || echo "Error while running the git setup script"
 
 # Run fish script
-bash ~/github/private/dotfiles/fish/setup_mac.sh || echo "Error while running the fish_mac setup script"
+bash $dotfiles/fish/setup_mac.sh || echo "Error while running the fish_mac setup script"
 
 # Setup nvm
-fish ~/github/private/dotfiles/nvm/setup.sh || echo "Error while running the vim setup script"
+fish $dotfiles/nvm/setup.sh || echo "Error while running the vim setup script"
 
 echo "Done!"
