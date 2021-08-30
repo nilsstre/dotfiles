@@ -2,7 +2,7 @@
 
 echo "Installing Fish and Oh My Fish"
 brew install fish
-echo (which fish) | sudo tee -a /etc/shells
+echo $(which fish) | sudo tee -a /etc/shells
 chsh -s (which fish)
 curl -L http://get.oh-my.fish | fish
 
