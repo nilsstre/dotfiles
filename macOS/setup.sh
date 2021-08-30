@@ -29,8 +29,7 @@ brew install git
 echo "Creating an SSH key for you..."
 mkdir -p ~/.ssh
 github=~/.ssh/github
-touch $github
-ssh-keygen -t rsa -b 4096 -C $email -f $github
+ssh-keygen -t rsa -b 4096 -C $email -f $github -P "" # Set empty password
 chmod 400 $github
 ssh-add $github
 cat $github.pub
