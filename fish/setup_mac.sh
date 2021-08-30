@@ -3,7 +3,7 @@
 echo "Installing Fish and Oh My Fish"
 brew install fish
 echo $(which fish) | sudo tee -a /etc/shells
-chsh -s (which fish)
+chsh -s $(which fish)
 curl -L http://get.oh-my.fish | fish
 
 fish ~/github/private/dotfiles/fish/bobthefish_mac.sh
