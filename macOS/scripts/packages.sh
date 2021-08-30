@@ -27,14 +27,15 @@ apps=(
   slack
   google-photos-backup-and-sync
   visual-studio-code
-  zoomus
   google-chrome
+  istat-menus
+  tunnelblick
 )
 
 # Install apps to /Applications
 # Default is: /Users/$user/Applications
 echo "Installing apps with Cask..."
-brew cask install --appdir="/Applications" ${apps[@]}
+brew install --cask --appdir="/Applications" ${apps[@]}
 
 echo "Linkg alfred with Homebrew"
 brew cask alfred link
