@@ -2,7 +2,7 @@
 
 omf install bobthefish
 brew tap homebrew/cask-fonts
-brewinstall --cask font-fira-code-nerd-font
+brew install --cask font-fira-code-nerd-font
 
 set -U theme_nerd_fonts yes
 set -U theme_project_dir_length 1
