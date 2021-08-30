@@ -58,13 +58,13 @@ alias vimconf='vim ~/.vim/vimrc'
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
 alias mkdir 'mkdir -v'
-alias mount 'mount |column -t'
+alias mounted 'mount | column -t'
 alias diff 'colordiff'
 alias path 'echo -e {$PATH//:/\\n}'
 alias now 'date +"%T"'
 alias nowtime now
 alias nowdate 'date +"%d-%m-%Y"'
-alias ports 'netstat -tulanp'
+alias ports 'netstat -anvp tcp | awk \'NR<3 || /LISTEN/\''
 alias header 'curl -I'
 
 alias reboot 'sudo /sbin/reboot'

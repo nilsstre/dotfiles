@@ -1,7 +1,10 @@
 #!/usr/bin/env fish
 
+omf install bass
+omf install nvm
+
 # Install Fisher
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
 # Install nvm
-fisher add jorgebucaran/nvm.fish
+fisher install jorgebucaran/nvm.fish

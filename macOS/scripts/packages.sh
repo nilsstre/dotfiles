@@ -11,6 +11,7 @@ packages=(
     fzf
     jq
     midnight-commander
+    colordiff
 )
 
 echo "Installing Homebrew packages..."
@@ -24,7 +25,7 @@ apps=(
   sublime-text
   deluge
   vlc
-  slack
+  slacks
   google-photos-backup-and-sync
   visual-studio-code
   google-chrome
@@ -36,7 +37,7 @@ apps=(
 # Install apps to /Applications
 # Default is: /Users/$user/Applications
 echo "Installing apps with Cask..."
-brew install --cask --appdir="/Applications" ${apps[@]}
+brew install --cask ${apps[@]}
 
 brew cleanup
 
