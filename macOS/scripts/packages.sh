@@ -30,6 +30,7 @@ apps=(
   google-chrome
   istat-menus
   tunnelblick
+  fantastical
 )
 
 # Install apps to /Applications
@@ -37,10 +38,6 @@ apps=(
 echo "Installing apps with Cask..."
 brew install --cask --appdir="/Applications" ${apps[@]}
 
-echo "Linkg alfred with Homebrew"
-brew cask alfred link
-
-brew cask cleanup
 brew cleanup
 
 echo "Downloading OVPN-client"
