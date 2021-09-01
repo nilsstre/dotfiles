@@ -72,3 +72,4 @@ alias poweroff 'sudo /sbin/poweroff'
 alias halt 'sudo /sbin/halt'
 alias shutdown 'sudo /sbin/shutdown'
 alias c clear
+

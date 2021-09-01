@@ -8,3 +8,6 @@ curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fi
 
 # Install nvm
 fisher install jorgebucaran/nvm.fish
+
+nvm install latest
+set -U nvm_default_version latest

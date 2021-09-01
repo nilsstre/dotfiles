@@ -32,6 +32,7 @@ apps=(
   istat-menus
   tunnelblick
   fantastical
+  messenger
 )
 
 # Install apps to /Applications
