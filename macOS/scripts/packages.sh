@@ -34,6 +34,7 @@ apps=(
   fantastical
   messenger
   bankid
+  dashlane
 )
 
 # Install apps to /Applications
