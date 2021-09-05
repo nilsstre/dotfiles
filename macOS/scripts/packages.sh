@@ -33,6 +33,7 @@ apps=(
   tunnelblick
   fantastical
   messenger
+  bankid
 )
 
 # Install apps to /Applications
