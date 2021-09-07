@@ -53,9 +53,6 @@ bash $dotfiles/macOS/scripts/mac.sh || echo "Error while running the mac.sh scri
 # Install applications and packages using Homebrew
 bash $dotfiles/macOS/scripts/packages.sh || echo "Error while running the packages.sh script"
 
-# Setup Vim
-bash $dotfiles/vim/setup.sh || echo "Error while running the vim setup script"
-
 # Setup Git
 bash $dotfiles/git/setup.sh || echo "Error while running the git setup script"
 
@@ -64,6 +61,9 @@ bash $dotfiles/fish/setup_mac.sh || echo "Error while running the fish_mac setup
 
 # Setup nvm
 fish $dotfiles/nvm/setup.sh || echo "Error while running the vim setup script"
+
+# Setup Vim
+bash $dotfiles/vim/setup.sh || echo "Error while running the vim setup script"
 
 # Setup private values
 bash $dotfiles/private/setup.sh || echo "Error while setting up private dotfiles"
