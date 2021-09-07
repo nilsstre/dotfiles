@@ -21,7 +21,7 @@ echo "Updating Homebrew..."
 brew update
 
 echo "Installing Homebrew cask"
-brew install caskroom/cask/brew-cask
+brew install cask
 
 echo "Installing Git..."
 brew install git
