@@ -25,7 +25,7 @@ apps=(
   sublime-text
   deluge
   vlc
-  slacks
+  slack
   google-photos-backup-and-sync
   visual-studio-code
   google-chrome
