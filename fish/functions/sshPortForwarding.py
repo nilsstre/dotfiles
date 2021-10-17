@@ -1,21 +1,23 @@
 import os
 import sys
 import subprocess
+import urllib.request
 
 SERVER_ADDRESS = os.environ['HOME_SERVER_ADDRESS']
-SERVER_PORT = os.environ['HOME_SERVER_PORT']
-SERVER_USER = os.environ['HOME_SERVER_USER']
-SERVER_KEY = os.environ['HOME_SERVER_KEY']
 
-services = dict({'sonarr': 6089, 'radarr': 6079, 'jackett': 6099, 'deluge': 8112, 'tautulli': 8181, 'vnc': 5901})
+SERVER_SERVICES = dict({'sonarr': 6089, 'radarr': 6079, 'jackett': 6099, 'deluge': 8112, 'tautulli': 8181, 'vnc': 5901, 'ombi': 3579, 'dozzle': 8282})
 
-arguemnts = sys.argv[1:]
+CLOSE_COMMAND = 'close'
 
-if __name__ == "__main__":
-    command = 'ssh -i ' + '~/.ssh/' + SERVER_KEY + ' -p ' + SERVER_PORT + ' ' + SERVER_USER + '@' + SERVER_ADDRESS
+services = sys.argv[1:] if len(sys.argv[1:]) > 0 else SERVER_SERVICES.keys()
 
-    for service in arguemnts:
-        command += ' -L ' + str(services[service]) + ':localhost:' + str(services[service])
+if __name__ == "__main__": 
+    current_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
+
+    command = 'ssh Ubuntu-Server-Local' if current_ip == SERVER_ADDRESS else 'ssh Ubuntu-Server-Remote'
+    
+    for service in services:
+        command += ' -L ' + str(SERVER_SERVICES[service]) + ':localhost:' + str(SERVER_SERVICES[service])
 
     process = subprocess.Popen(command.split(), 
                                 stdin=subprocess.PIPE,
@@ -26,15 +28,20 @@ if __name__ == "__main__":
     
     os.system('clear')
 
-    for service in arguemnts:
-        print('Opened service: ' + str(service) + ', on port: ' + str(services[service]))
-
     print(process.stdout.readline())
 
-    closeConnection = False
+    for service in services:
+        print('Opened service: ' + str(service) + ', on port: ' + str(SERVER_SERVICES[service]))
 
-    while(not closeConnection):
-        if str(input()) == 'close':
-            process.stdin.close()
-            closeConnection = True
-            print('Closing the connection')
+    print()
+
+    print('Close connection to the server by typing: close')
+
+    print()
+
+    while(not str(input()) == CLOSE_COMMAND):
+        pass
+    
+    process.stdin.close()
+    closeConnection = True
+    print('Closing the connection')

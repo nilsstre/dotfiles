@@ -9,6 +9,9 @@ packages=(
     neovim
     thefuck
     fzf
+    jq
+    midnight-commander
+    colordiff
 )
 
 echo "Installing Homebrew packages..."
@@ -25,23 +28,24 @@ apps=(
   slack
   google-photos-backup-and-sync
   visual-studio-code
-  zoomus
+  google-chrome
+  istat-menus
+  tunnelblick
+  fantastical
+  messenger
+  bankid
+  dashlane
 )
 
 # Install apps to /Applications
 # Default is: /Users/$user/Applications
 echo "Installing apps with Cask..."
-brew cask install --appdir="/Applications" ${apps[@]}
+brew install --cask ${apps[@]}
 
-echo "Linkg alfred with Homebrew"
-brew cask alfred link
-
-brew cask cleanup
 brew cleanup
 
 echo "Downloading OVPN-client"
-cd ~/Downloads
-curl -L -O https://files.ovpn.com/client/latest/OVPN.zip
-unzip OVPN.zip
-rm -rf OVPN.zip
-mv OVPN.app /Applications/
+OVPN=~/Downloads/OVPN.zip
+curl -L https://files.ovpn.com/client/latest/OVPN.zip -o $OVPN
+unzip $OVPN -d ~/Downloads/
+rm -rf $OVPN

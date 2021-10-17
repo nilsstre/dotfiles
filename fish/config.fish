@@ -3,6 +3,7 @@ set fish_greeting ""
 
 # use neovim instead of vim
 alias vim nvim
+alias svim 'sudo vim'
 alias view 'nvim -R'
 alias vimdiff 'nvim -d'
 
@@ -36,8 +37,9 @@ function ....
 end
 
 # saving my ass
-alias cp='cp -i'
-alias mv='mv -i'
+alias cp 'cp -i'
+alias mv 'mv -i'
+alias ln 'ln -i'
 
 # thefuck
 thefuck --alias | source
@@ -54,3 +56,20 @@ alias vimconf='vim ~/.vim/vimrc'
 
 # iTerm2 shell integration
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+alias mkdir 'mkdir -v'
+alias mounted 'mount | column -t'
+alias diff 'colordiff'
+alias path 'echo -e {$PATH//:/\\n}'
+alias now 'date +"%T"'
+alias nowtime now
+alias nowdate 'date +"%d-%m-%Y"'
+alias ports 'netstat -anvp tcp | awk \'NR<3 || /LISTEN/\''
+alias header 'curl -I'
+
+alias reboot 'sudo /sbin/reboot'
+alias poweroff 'sudo /sbin/poweroff'
+alias halt 'sudo /sbin/halt'
+alias shutdown 'sudo /sbin/shutdown'
+alias c clear
+

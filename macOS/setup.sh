@@ -2,13 +2,12 @@
 
 # Based on https://gist.github.com/bradp/bea76b16d3325f5c47d4
 
+echo "Started MacOS setup script"
+
 email="nils.streijffert@gmail.com"
 
-# Ask for the administrator password upfront
-sudo -v
-
 echo "Installing xcode-stuff"
-xcode-select --install
+sudo xcode-select --install
 
 # Check for Homebrew,
 # Install if we don't have it
@@ -22,50 +21,51 @@ echo "Updating Homebrew..."
 brew update
 
 echo "Installing Homebrew cask"
-brew install caskroom/cask/brew-cask
-
-echo "Installing Chrome..."
-brew cask install google-chrome
+brew install cask
 
 echo "Installing Git..."
 brew install git
 
 echo "Creating an SSH key for you..."
 mkdir -p ~/.ssh
-cd ~/.ssh
-touch github
-ssh-keygen -t rsa -b 4096 -C $email
-chmod 400 github
-ssh-add github
+github=~/.ssh/github
+ssh-keygen -t rsa -b 4096 -C $email -f $github -P "" # Set empty password
+chmod 400 $github
+ssh-add $github
+cat $github.pub
 
 echo "Please add this public key to Github \n"
 echo "https://github.com/account/ssh \n"
 read -p "Press [Enter] key after this..."
 
-echo "Setting up Git"
-bash ~/github/private/dotfiles/macOS/scripts/git.sh
+echo "Pulling dotfiles from Github"
+githubDir=~/github/private
+mkdir -p $githubDir
+git clone git@github.com:nilsstre/dotfiles.git $githubDir/dotfiles
 
-echo "Copying dotfiles from Github"
-mkdir -p ~/github/private
-cd ~/github/private
-git clone git@github.com:nilsstre/dotfiles.git dotfiles
+sudo -v # set sudo privileges
+
+dotfiles=$githubDir/dotfiles
 
 # Run mac setup script
-bash ~/github/private/dotfiles/macOS/scripts/mac.sh
+bash $dotfiles/macOS/scripts/mac.sh || echo "Error while running the mac.sh script"
 
 # Install applications and packages using Homebrew
-bash ~/github/private/dotfiles/macOS/scripts/packages.sh
-
-# Setup Vim
-bash ~/github/private/dotfiles/vim/vim.sh
+bash $dotfiles/macOS/scripts/packages.sh || echo "Error while running the packages.sh script"
 
 # Setup Git
-bash ~/github/private/dotfiles/git/setup.sh
+bash $dotfiles/git/setup.sh || echo "Error while running the git setup script"
 
 # Run fish script
-bash ~/github/private/dotfiles/fish/setup_mac.sh
+bash $dotfiles/fish/setup_mac.sh || echo "Error while running the fish_mac setup script"
 
 # Setup nvm
-fish ~/github/private/dotfiles/nvm/setup.sh
+fish $dotfiles/nvm/setup.sh || echo "Error while running the vim setup script"
+
+# Setup Vim
+bash $dotfiles/vim/setup.sh || echo "Error while running the vim setup script"
+
+# Setup private values
+bash $dotfiles/private/setup.sh || echo "Error while setting up private dotfiles"
 
 echo "Done!"

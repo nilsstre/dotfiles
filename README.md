@@ -1,4 +1,9 @@
 # Dotfiles
 
 ## Download repostitory
-`curl https://raw.githubusercontent.com/nilsstre/dotfiles/master/macOS/setup.sh | sudo bash`
+
+### Mac
+`curl https://raw.githubusercontent.com/nilsstre/dotfiles/master/setup.sh --output setup.sh; bash setup.sh; rm setup.sh`
+
+### Linux
+`curl https://raw.githubusercontent.com/nilsstre/dotfiles/master/setup.sh | sudo bash`

@@ -95,9 +95,6 @@ sudo pmset -a sms 0
 # http://www.cultofmac.com/221392/quick-hack-speeds-up-retina-macbooks-wake-from-sleep-os-x-tips/
 sudo pmset -a standbydelay 86400
 
-#"Disable annoying backswipe in Chrome"
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
-
 #"Setting screenshots location to ~/Desktop"
 defaults write com.apple.screencapture location -string "$HOME/Desktop"
 
@@ -132,10 +129,6 @@ defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.Web
 
 #"Adding a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
-
-#"Use `~/Downloads/Incomplete` to store incomplete downloads"
-defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Incomplete"
 
 #"Disable 'natural' (Lion-style) scrolling"
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false

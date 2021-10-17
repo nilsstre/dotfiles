@@ -140,7 +140,6 @@ map <Space> <Leader>
 
 " Highlight search hits but clear highlight on escape
 set hlsearch
-nnoremap <silent> <esc> :noh<return><esc>
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -189,4 +188,3 @@ match ExtraWhitespace /\s\+$/
 
 " Mark 80th column
 set colorcolumn=80
-
