@@ -21,13 +21,6 @@ function z
 	set -l dir (fasd -Rdl $argv[1] | fzf -1 -0 --no-sort +m); and cd $dir; return 1
 end
 
-# kill ports easily
-function killport
-	if set -q argv[1]
-		kill -9 (lsof -t -i:$argv[1])
-	end
-end
-
 function ...
 	cd ../.. $argv;
 end
@@ -55,7 +48,12 @@ alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 alias vimconf='vim ~/.vim/vimrc'
 
 # iTerm2 shell integration
-test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+if test -e ~/.iterm2_shell_integration.fish
+	source ~/.iterm2_shell_integration.fish
+else
+	curl -L https://iterm2.com/shell_integration/fish -o ~/.iterm2_shell_integration.fish
+	source ~/.iterm2_shell_integration.fish
+end
 
 alias mkdir 'mkdir -v'
 alias mounted 'mount | column -t'
@@ -73,3 +71,6 @@ alias halt 'sudo /sbin/halt'
 alias shutdown 'sudo /sbin/shutdown'
 alias c clear
 
+source ~/.config/fish/functions/event_handlers/*
+
+direnv hook fish | source

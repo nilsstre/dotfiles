@@ -65,6 +65,9 @@ bash $dotfiles/fish/setup_mac.sh || echo "Error while running the fish_mac setup
 # Setup nvm
 fish $dotfiles/nvm/setup.sh || echo "Error while running the vim setup script"
 
+# Setup iTerm settings
+bash $dotfiles/macOS/iterm2/setup.sh || echo "Error while setting up iTerm settings"
+
 # Setup private values
 bash $dotfiles/private/setup.sh || echo "Error while setting up private dotfiles"
 
