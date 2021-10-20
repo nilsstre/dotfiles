@@ -47,12 +47,14 @@ alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 # edit vimrc easily
 alias vimconf='vim ~/.vim/vimrc'
 
-# iTerm2 shell integration
-if test -e ~/.iterm2_shell_integration.fish
-	source ~/.iterm2_shell_integration.fish
-else
-	curl -L https://iterm2.com/shell_integration/fish -o ~/.iterm2_shell_integration.fish
-	source ~/.iterm2_shell_integration.fish
+if test (uname) = "Darwin" # MacOS specific config
+    # iTerm2 shell integration
+    if test -e ~/.iterm2_shell_integration.fish
+        source ~/.iterm2_shell_integration.fish
+    else
+        curl -L https://iterm2.com/shell_integration/fish -o ~/.iterm2_shell_integration.fish
+        source ~/.iterm2_shell_integration.fish
+    end
 end
 
 alias mkdir 'mkdir -v'
@@ -72,5 +74,6 @@ alias shutdown 'sudo /sbin/shutdown'
 alias c clear
 
 source ~/.config/fish/functions/event_handlers/*
+source ~/.config/fish/functions/work/*
 
 direnv hook fish | source
