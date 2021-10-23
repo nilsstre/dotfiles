@@ -72,8 +72,12 @@ alias poweroff 'sudo /sbin/poweroff'
 alias halt 'sudo /sbin/halt'
 alias shutdown 'sudo /sbin/shutdown'
 alias c clear
+alias eval-ssh 'eval (ssh-agent -c)'
 
 source ~/.config/fish/functions/event_handlers/*
-source ~/.config/fish/functions/work/*
+
+if test -d ~/.config/fish/functions/work
+    source ~/.config/fish/functions/work/*
+end
 
 direnv hook fish | source
