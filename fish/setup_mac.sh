@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-echo "Installing Fish and Oh My Fish"
+echo "Installing Oh My Fish"
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-brew install fish
 echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish)
 curl -L http://get.oh-my.fish | fish 
