@@ -48,10 +48,13 @@ sudo -v # set sudo privileges
 dotfiles=$githubDir/dotfiles
 
 # Run mac setup script
-bash $dotfiles/macOS/scripts/mac.sh || echo "Error while running the mac.sh script"
+bash $dotfiles/macOS/scripts/settings.sh || echo "Error while running the scripts/settings.sh script"
 
-# Install applications and packages using Homebrew
-bash $dotfiles/macOS/scripts/packages.sh || echo "Error while running the packages.sh script"
+# Install applications using Homebrew
+bash $dotfiles/macOS/brew/setup.sh || echo "Error while running the brew/setup.sh script"
+
+# Install applications manually
+bash $dotfiles/macOS/packages/setup.sh || echo "Error while running the packages/setup.sh script"
 
 # Setup Git
 bash $dotfiles/git/setup.sh || echo "Error while running the git setup script"
@@ -67,8 +70,5 @@ bash $dotfiles/macOS/iterm2/setup.sh || echo "Error while setting up iTerm setti
 
 # Setup Vim
 bash $dotfiles/vim/setup.sh || echo "Error while running the vim setup script"
-
-# Setup private values
-bash $dotfiles/private/setup.sh || echo "Error while setting up private dotfiles"
 
 echo "Done!"
