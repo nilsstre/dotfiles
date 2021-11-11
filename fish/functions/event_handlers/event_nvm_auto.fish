@@ -1,4 +1,4 @@
-function nvm_auto --on-variable PWD --description 'Auto switch node version based on .nvmrc file'
+function event_nvm_auto --on-variable PWD --description 'Auto switch node version based on .nvmrc file'
   status --is-command-substitution; and return
 
   if test -e .nvmrc

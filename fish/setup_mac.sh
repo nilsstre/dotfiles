@@ -11,4 +11,5 @@ curl -L http://get.oh-my.fish | fish
 fish ~/github/private/dotfiles/fish/bobthefish_mac.sh
 
 ln -isv $script_dir/config.fish ~/.config/fish/config.fish
-ln -isv $script_dir/functions ~/.config/fish/functions
+
+bash $script_dir/link_functions.sh
