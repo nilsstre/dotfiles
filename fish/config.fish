@@ -1,7 +1,6 @@
 set -x GREP_OPTIONS '--color=auto'
 set -x GREP_COLOR '1;30;40'
 
-
 # Event handler functions needs to be source directly in the config file to work
 for func in (find ~/.config/fish/functions -name 'event_*.fish')
     source $func
