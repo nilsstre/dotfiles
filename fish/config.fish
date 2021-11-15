@@ -1,6 +1,3 @@
-# Use ripgrep for fzf by default
-set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --follow -g "!{.git,node_modules,.DS_Store,Library,Applications,.npm,.zsh_sessions,.fzf,.cache,}/*" 2> /dev/null'
-
 set -x GREP_OPTIONS '--color=auto'
 set -x GREP_COLOR '1;30;40'
 
@@ -18,7 +15,6 @@ if test -d $tools_bin
 end
 
 # Operating system specific configuration
-
 switch (uname)
     case Darwin
         set iterm2_integration_file ~/.iterm2_shell_integration.fish
