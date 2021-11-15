@@ -1,8 +1,7 @@
 function git-reset-origin --argument branch
-  git-check
+  git-check "The git-reset-master command can only be run in a git repository"
 
   if not test $status -eq 0
-    echo "The git-reset-master command can only be run in a git repository"
     return 1
   end
 

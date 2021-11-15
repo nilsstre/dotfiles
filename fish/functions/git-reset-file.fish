@@ -1,5 +1,5 @@
 function git-reset-file --argument file branch --description "Resest a specific file (first argument) to a branch (second argument, defual=origin/master)"
-    git-check "Must be in a git repository"
+    git-check "The git-reset-file command can only be run in a git repository"
 
     if not test $status -eq 0
         return 1

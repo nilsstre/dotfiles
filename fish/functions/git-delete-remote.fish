@@ -1,5 +1,5 @@
 function git-delete-remote --argument branch
-    git-check  "Must be in a git repository"
+    git-check  "The git-delete-remote command can only be run in a git repository"
 
     if not test $status -eq 0
         return 1

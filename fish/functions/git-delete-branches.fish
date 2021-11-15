@@ -1,5 +1,5 @@
 function git-delete-branches
-    git-check "Must be in a git repository"
+    git-check "The git-delete-branches command can only be run in a git repository"
 
     if not test $status -eq 0
         return 1
@@ -11,6 +11,5 @@ function git-delete-branches
 
     if read_confirm 
         echo $branches | xargs git branch -D
-        echo $branches | xargs git-delete-remote
     end
 end
