@@ -29,9 +29,11 @@ switch (uname)
 
         source $iterm2_integration_file
     case Linux
-    
+        switch (grep '^VERSION' /etc/os-release)
+            case '*'
+        end
     case '*'
-        echo WARNING! Unknown operating system!
+        echo fish config - WARNING! Unknown operating system \(os: (uname)\) >&2
 end
 
 if test -q $thefuck
