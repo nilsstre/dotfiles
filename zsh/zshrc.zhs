@@ -1,6 +1,27 @@
 autoload -Uz +X compinit && compinit
 autoload -Uz +X bashcompinit && bashcompinit
 
+export ZSH="$HOME/.oh-my-zsh"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+
+GOPATH="$(go env GOPATH)"
+
+export PATH="$GOPATH/bin:$PATH"
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+export ZSH_CUSTOM="~/.config/zsh"
+
+export TMS_CONFIG_FILE="~/.config/tms/config.toml"
+
+export MANPAGER='nvim +Man!'
+
 ENABLE_CORRECTION="true"
 
 COMPLETION_WAITING_DOTS="true"
@@ -59,4 +80,7 @@ compdef __aws_sso_profile_complete aws-sso-profile
 complete -C /usr/local/bin/aws-sso aws-sso
 
 # END_AWS_SSO_CLI
+
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 

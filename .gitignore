@@ -5,3 +5,4 @@ fisher.fish
 tmux/plugins
 *.swp
 .DS_Store
+*.ttf

@@ -1,9 +1,3 @@
-bookmarks = [
-    "/Users/nags/.config/tms",
-    "/Users/nags/.config/nvim/",
-    "/Users/nags/.config/tmux/",
-]
-
 [[search_dirs]]
-path = "/Users/nags/git"
+path = "~/git"
 depth = 10

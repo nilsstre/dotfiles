@@ -12,25 +12,26 @@ return {
 				typescriptreact = { "prettierd" },
 				css = { "prettierd" },
 				html = { "prettierd" },
+				java = { "google-java-format" },
 				json = { "prettierd" },
 				yaml = { "prettierd" },
 				markdown = { "prettierd" },
 				lua = { "stylua" },
-        go = { "goimports", "gofumpt" },
+				go = { "goimports", "gofumpt" },
 			},
-      format_on_save = {
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 1000,
-      },
+			format_on_save = {
+				lsp_fallback = true,
+				async = false,
+				timeout_ms = 1000,
+			},
 		})
 
-    vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-      conform.format({
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 500,
-      })
-    end, { desc = "Format file or range (in visual mode)" })
+		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+			conform.format({
+				lsp_fallback = true,
+				async = false,
+				timeout_ms = 500,
+			})
+		end, { desc = "Format file or range (in visual mode)" })
 	end,
 }
