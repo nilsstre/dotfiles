@@ -1,0 +1,6 @@
+[Mm]iddleware
+KNS
+Datadog
+Snyk
+Lakehouse
+Klarna
