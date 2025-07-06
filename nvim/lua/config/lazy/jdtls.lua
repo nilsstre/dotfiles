@@ -1,5 +1,5 @@
 return {
-	"mfussenegger/nvim-jdtls",
+	--[[ "mfussenegger/nvim-jdtls",
 	config = function()
 		local config = {
 			cmd = { "~/.local/share/nvim/mason/packages/jdtls/bin/jdtls" },
@@ -7,5 +7,5 @@ return {
 		}
 
 		require("jdtls").start_or_attach(config)
-	end,
+	end, ]]
 }

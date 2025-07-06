@@ -30,21 +30,64 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
 			callback = function(event)
-				local opts = { buffer = event.buf }
-
 				-- these will be buffer-local keybindings
 				-- because they only work if you have an active language server
 
-				vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-				vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-				vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-				vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-				vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-				vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-				vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-				vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-				vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-				vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+				vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = event.buf, desc = "Show info" })
+				vim.keymap.set(
+					"n",
+					"gd",
+					"<cmd>lua vim.lsp.buf.definition()<cr>",
+					{ buffer = event.buf, desc = "Goto definition" }
+				)
+				vim.keymap.set(
+					"n",
+					"gD",
+					"<cmd>lua vim.lsp.buf.declaration()<cr>",
+					{ buffer = event.buf, desc = "Goto declaration" }
+				)
+				vim.keymap.set(
+					"n",
+					"gi",
+					"<cmd>lua vim.lsp.buf.implementation()<cr>",
+					{ buffer = event.buf, desc = "Goto implementation" }
+				)
+				vim.keymap.set(
+					"n",
+					"go",
+					"<cmd>lua vim.lsp.buf.type_definition()<cr>",
+					{ buffer = event.buf, desc = "Goto type definition" }
+				)
+				vim.keymap.set(
+					"n",
+					"gr",
+					"<cmd>lua vim.lsp.buf.references()<cr>",
+					{ buffer = event.buf, desc = "Show references" }
+				)
+				vim.keymap.set(
+					"n",
+					"gs",
+					"<cmd>lua vim.lsp.buf.signature_help()<cr>",
+					{ buffer = event.buf, desc = "Show signature help" }
+				)
+				vim.keymap.set(
+					"n",
+					"<F2>",
+					"<cmd>lua vim.lsp.buf.rename()<cr>",
+					{ buffer = event.buf, desc = "Rename" }
+				)
+				vim.keymap.set(
+					{ "n", "x" },
+					"<F3>",
+					"<cmd>lua vim.lsp.buf.format({async = true})<cr>",
+					{ buffer = event.buf, desc = "Reformat (async)" }
+				)
+				vim.keymap.set(
+					"n",
+					"<F4>",
+					"<cmd>lua vim.lsp.buf.code_action()<cr>",
+					{ buffer = event.buf, desc = "Code action" }
+				)
 			end,
 		})
 
@@ -88,6 +131,7 @@ return {
 				"marksman",
 				"pyright",
 				"sqls",
+				"taplo",
 				"terraformls",
 				"ts_ls",
 				"vimls",
@@ -136,6 +180,12 @@ return {
 
 		local lspkind = require("lspkind")
 
+		vim.diagnostic.config({
+			float = { border = "round" },
+		})
+
+		local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
 		cmp.setup({
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp", keyword_length = 2 },
@@ -147,16 +197,18 @@ return {
 			mapping = cmp.mapping.preset.insert({
 				-- Enter key confirms completion item
 				["<CR>"] = cmp.mapping.confirm({ select = false }),
-				-- Ctrl + space triggers completion menu
+				-- Ctrl + c triggers completion menu
 				["<C-c>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
+				["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+				["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
 			}),
 			snippet = {
 				expand = snippet_expand,
 			},
 			formatting = {
 				format = lspkind.cmp_format({
-					maxwidth = 60,
+					maxwidth = 80,
 					ellipsis_char = "...",
 					mode = "symbol_text",
 					menu = {
@@ -168,6 +220,18 @@ return {
 						spell = "[Spell]",
 					},
 				}),
+			},
+			window = {
+				completion = {
+					scrollbar = false,
+					border = "rounded",
+					winhighlight = "Normal:CmpNormal",
+				},
+				documentation = {
+					scrollbar = false,
+					border = "rounded",
+					winhighlight = "Normal:CmpNormal",
+				},
 			},
 		})
 

@@ -19,3 +19,7 @@ vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current spli
 
 vim.keymap.set("n", "<S-up>", "<cmd>:m-2<cr>", { desc = "Move line up" })
 vim.keymap.set("n", "<S-down>", "<cmd>:m+<cr>", { desc = "Move line down" })
+
+vim.keymap.set("n", "<leader>n", "<cmd>:bnext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>p", "<cmd>:bprevious<cr>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>d", "<cmd>:bdelete<cr>", { desc = "Close buffer" })
