@@ -1,6 +1,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Performance optimizations
+vim.opt.lazyredraw = true
+vim.opt.synmaxcol = 240
+vim.opt.re = 0
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -36,9 +41,6 @@ vim.diagnostic.config({ virtual_text = true })
 
 vim.g.have_nerd_font = true
 
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
-
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
@@ -48,3 +50,34 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 
 vim.opt.cursorline = true
+
+vim.opt.laststatus = 3
+
+-- Additional performance and usability settings
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
+
+-- Better search
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+-- Completion settings
+vim.opt.completeopt = "menuone,noselect"
+vim.opt.pumheight = 10
+
+-- Modern Neovim features
+vim.opt.conceallevel = 2 -- For better markdown rendering
+vim.opt.concealcursor = "nc" -- Hide conceals in normal and command modes
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false -- Start with folds open
+vim.opt.fillchars = {
+	foldopen = "▾",
+	foldclose = "▸",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
+}
