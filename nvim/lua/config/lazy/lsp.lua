@@ -181,7 +181,7 @@ return {
 		local lspkind = require("lspkind")
 
 		vim.diagnostic.config({
-			float = { border = "round" },
+			float = { border = "rounded" },
 		})
 
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
