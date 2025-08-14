@@ -8,15 +8,15 @@ return {
 			-- copilot_model = "gpt-4o-copilot",
 			copilot_model = "gpt-4o-copilot",
 			suggestion = {
+				get_enabled = true,
 				enabled = true,
-				auto_trigger = true,
+				auto_trigger = false,
 				hide_during_completion = true,
 				debounce = 55,
 				keymap = {
 					accept = "<C-y>",
-					accept_word = false,
-					next = "<C-)>",
-					dismiss = "<C-Tab>",
+					next = "<C-n>",
+					prev = "<C-p>",
 				},
 			},
 		})

@@ -40,14 +40,14 @@ return {
 
 		map_numeric_keys(harpoon)
 
-		vim.keymap.set("n", "<leader>a", function()
+		vim.keymap.set("n", "<leader>ha", function()
 			harpoon:list():add()
 		end, { desc = "Add file to harpoon" })
 
 		-- vim.keymap.set("n", "<leader>q", function()
 		-- 	toggle_telescope(harpoon:list())
 		-- end, { desc = "Toggle harpoon telescope menu" })
-		vim.keymap.set("n", "<leader>q", function()
+		vim.keymap.set("n", "<leader>hq", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end, { desc = "Toggle harpoon quick menu" })
 

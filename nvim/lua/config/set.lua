@@ -68,10 +68,8 @@ vim.opt.completeopt = "menuone,noselect"
 vim.opt.pumheight = 10
 
 -- Modern Neovim features
-vim.opt.conceallevel = 2 -- For better markdown rendering
-vim.opt.concealcursor = "nc" -- Hide conceals in normal and command modes
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.conceallevel = 0 -- Disable concealing to prevent hiding quotes in JSON files
+vim.opt.concealcursor = "c" -- Hide conceals only in command mode (not normal mode)
 vim.opt.foldenable = false -- Start with folds open
 vim.opt.fillchars = {
 	foldopen = "▾",

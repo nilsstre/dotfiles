@@ -7,7 +7,7 @@ export ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh"
 # Supported prompts:
 #   - oh-my-zsh
 #   - starship
-PROMPT_TYPE="starship"
+PROMPT_TYPE="oh-my-zsh"
 
 if [[ "$PROMPT_TYPE" == "oh-my-zsh" ]]; then
   export ZSH="$XDG_CONFIG_HOME/oh-my-zsh"
@@ -45,14 +45,6 @@ eval "$('/opt/homebrew/bin/brew' shellenv)"
 #autoload -Uz +X compinit && compinit
 #autoload -Uz +X bashcompinit && bashcompinit
 
-GOPATH="$(go env GOPATH)"
-
-KLAPP_PILOT_PATH="~/git/klarna/klarna-app/clients/tooling/clients-cli/pilot"
-
-alias pilot="$KLAPP_PILOT_PATH/bin/pilot"
-
-export PATH="$GOPATH/bin:$KLAPP_PILOT_PATH/bin:$PATH"
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -82,12 +74,7 @@ fi
 
 bindkey "ç" fzf-cd-widget
 
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
-if [ ! -f ~/.keprc ]; then
-  source ~/.keprc
-fi
+source ~/.keprc
 
 if [[ "$PROMPT_TYPE" == "oh-my-zsh" ]]; then
   # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -96,8 +83,8 @@ fi
 
 source $ZSH_CUSTOM/aliases.zsh
 
-export COREPACK_ENABLE_UNSAFE_CUSTOM_URLS=1
-
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source ~/.environment_variables

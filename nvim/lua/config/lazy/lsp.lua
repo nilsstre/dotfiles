@@ -19,20 +19,18 @@ return {
 	},
 	config = function()
 		vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
+
+		vim.keymap.set("n", "än", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Go to next diagnostic error" })
 		vim.keymap.set(
 			"n",
-			"Äd",
+			"äN",
 			"<cmd>lua vim.diagnostic.goto_prev()<cr>",
 			{ desc = "Go to previous diagnostic error" }
 		)
-		vim.keymap.set("n", "äd", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Go to next diagnostic error" })
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
 			callback = function(event)
-				-- these will be buffer-local keybindings
-				-- because they only work if you have an active language server
-
 				vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = event.buf, desc = "Show info" })
 				vim.keymap.set(
 					"n",
@@ -84,8 +82,8 @@ return {
 				)
 				vim.keymap.set(
 					"n",
-					"<F4>",
 					"<cmd>lua vim.lsp.buf.code_action()<cr>",
+					"<F4>",
 					{ buffer = event.buf, desc = "Code action" }
 				)
 			end,
@@ -165,6 +163,9 @@ return {
 				"pflake8",
 				"prettier",
 				"pylint",
+				"shellcheck",
+				"shellharden",
+				"shfmt",
 				"stylua",
 				"tflint",
 				"tfsec",

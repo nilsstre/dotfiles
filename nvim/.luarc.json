@@ -8,6 +8,19 @@
   "workspace.checkThirdParty": false,
   "workspace.library": [
     "$VIMRUNTIME",
-    "${3rd}/luv/library"
-  ]
+    "${3rd}/luv/library",
+    "${3rd}/busted/library",
+    "${3rd}/luassert/library",
+    "lua/types"
+  ],
+  "completion.callSnippet": "Both",
+  "completion.keywordSnippet": "Both",
+  "completion.displayContext": 6,
+  "hint.enable": true,
+  "hint.paramType": true,
+  "hint.paramName": "All",
+  "hint.semicolon": "All",
+  "hint.arrayIndex": "All",
+  "format.enable": true,
+  "telemetry.enable": false
 }

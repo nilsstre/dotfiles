@@ -9,7 +9,7 @@ return {
 			desc = "Diagnostics (Trouble)",
 		},
 		{
-			"<leader>xX",
+			"<leader>tl",
 			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 			desc = "Buffer Diagnostics (Trouble)",
 		},
@@ -34,12 +34,12 @@ return {
 			desc = "Quickfix List (Trouble)",
 		},
 		{
-			"ät",
+			"<leader>tn",
 			"<cmd>Trouble diagnostics next<cr>",
 			desc = "Diagnostics next (Trouble)",
 		},
 		{
-			"Ät",
+			"<leader>tN",
 			"<cmd>Trouble diagnostics next<cr>",
 			desc = "Diagnostics next (Trouble)",
 		},

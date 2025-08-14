@@ -4,11 +4,11 @@ return {
 	cmd = { "ConformInfo" },
 	keys = {
 		{
-			"<leader>f",
+			"<leader>lf",
 			function()
 				require("conform").format({ async = true, lsp_fallback = true })
 			end,
-			mode = "",
+			mode = "n",
 			desc = "Format buffer",
 		},
 	},
@@ -16,26 +16,28 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			python = { "isort", "black" },
-			javascript = { { "prettierd", "prettier" } },
-			typescript = { { "prettierd", "prettier" } },
-			javascriptreact = { { "prettierd", "prettier" } },
-			typescriptreact = { { "prettierd", "prettier" } },
-			json = { { "prettierd", "prettier" } },
-			yaml = { { "prettierd", "prettier" } },
-			markdown = { { "prettierd", "prettier" } },
-			html = { { "prettierd", "prettier" } },
-			css = { { "prettierd", "prettier" } },
-			scss = { { "prettierd", "prettier" } },
-			sh = { "shfmt" },
+			javascript = { "prettierd", "eslint_d" },
+			typescript = { "prettierd", "eslint_d" },
+			javascriptreact = { "prettierd", "eslint_d" },
+			typescriptreact = { "prettierd", "eslint_d" },
+			json = { "prettierd" },
+			yaml = { "prettierd" },
+			markdown = { "prettierd" },
+			html = { "prettierd" },
+			css = { "prettierd" },
+			scss = { "prettierd" },
+			sh = { "shfmt", "shellharden" },
 			go = { "goimports", "gofumpt" },
 		},
 		default_format_opts = {
 			lsp_format = "fallback",
 		},
-		format_on_save = {
-			timeout_ms = 500,
-			lsp_fallback = true,
-		},
+		format_on_save = function(bufnr)
+			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+				return
+			end
+			return { timeout_ms = 500, lsp_format = "fallback" }
+		end,
 		formatters = {
 			shfmt = {
 				prepend_args = { "-i", "2" },
@@ -44,16 +46,5 @@ return {
 	},
 	init = function()
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-	end,
-	config = function()
-		local conform = require("conform")
-
-		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-			conform.format({
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 500,
-			})
-		end, { desc = "Format file or range (in visual mode)" })
 	end,
 }

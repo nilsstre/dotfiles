@@ -7,6 +7,7 @@ alias gb='git branch | grep -v "^\*" | fzf --height=20% --reverse --info=inline 
 alias docker-clean='docker ps -aq | xargs docker stop | xargs docker rm'
 
 alias git-clean='git fetch origin --prune'
+alias git-rerun="git commit --amend --no-verify --no-edit && git push --force-with-lease --force-if-includes"
 
 alias he='history 1 | sort -rn | fzf |  sed -E "s/^[[:space:]]*[[:digit:]]+[[:space:]]+//" | /bin/zsh'
 

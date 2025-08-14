@@ -6,3 +6,4 @@ tmux/plugins
 *.swp
 .DS_Store
 *.ttf
+gitconfig-klarna
