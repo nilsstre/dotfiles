@@ -2,3 +2,8 @@ fish_prompt.fish
 fish/functions/work/*
 !fish/functions/work/.gitkeep
 fisher.fish
+tmux/plugins
+*.swp
+.DS_Store
+*.ttf
+gitconfig-klarna
